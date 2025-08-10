@@ -1,4 +1,4 @@
-class inventario:
+class Inventario:
     def __init__(self):
         self.productos=[]
     def agregar_producto(self,producto):
@@ -16,6 +16,13 @@ class inventario:
     def ordenar_productos(self):
         self.productos.sort()
         print("Productos ordenados alfabeticamente")
+    def mostar_productos(self):
+        if not self.productos:
+            print("Inventario vacio")
+        else:
+            print("Inventario:")
+            for i in self.productos:
+                print(f"-{i}")
     def buscar_producto(self,producto):
         if producto in self.productos:
             posicion= self.productos.index(producto)
@@ -25,3 +32,42 @@ class inventario:
     def vaciar_inventario(self):
         self.productos.clear()
         print("Inventario vaciado")
+inventario= Inventario()
+while True:
+    print("Menu")
+    print("1. Agregar producto")
+    print("2. Eliminar producto")
+    print("3. Agregar producto en una posicion")
+    print("4. Ordenar productos")
+    print("5. Mostrar productos")
+    print("6. Buscar un producto")
+    print("7. Vaciar inventario")
+    print("8. Salir")
+    opcion= input("Ingrese una de las opciones: ")
+    match opcion:
+        case "1":
+            while True:
+                producto= input("Ingrese el producto a agregar: ")
+                inventario.agregar_producto(producto)
+                if not producto:
+                    print("El producto no puede estar vacio")
+                else:
+                    break
+        case "2":
+            while True:
+                producto = input("Ingrese el producto a eliminar: ")
+                inventario.eliminar_producto(producto)
+                if not producto:
+                    print("Ingrese un producto")
+                else:
+                    break
+        case "3":
+            try:
+                posicion =int(input("Ingrese la posicion: "))
+                producto =input("Ingrese el producto a agregar en la posicion: ")
+                inventario.insertar_producto(posicion,producto)
+            except ValueError:
+                print("La posicion debe ser un numero entero")
+            except Exception as e:
+                print("Error al agregar producto: ",e)
+        case "4":
