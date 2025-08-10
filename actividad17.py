@@ -64,10 +64,28 @@ while True:
         case "3":
             try:
                 posicion =int(input("Ingrese la posicion: "))
-                producto =input("Ingrese el producto a agregar en la posicion: ")
-                inventario.insertar_producto(posicion,producto)
+                while True:
+                    producto =input("Ingrese el producto a agregar en la posicion: ")
+                    inventario.insertar_producto(posicion,producto)
+                    if not producto:
+                        print("Ingrese un producto")
+                    else:
+                        break
             except ValueError:
                 print("La posicion debe ser un numero entero")
             except Exception as e:
                 print("Error al agregar producto: ",e)
         case "4":
+            inventario.ordenar_productos()
+        case "5":
+            inventario.mostar_productos()
+        case "6":
+            producto= input("Ingrese el producto a buscar: ")
+            inventario.buscar_producto(producto)
+        case "7":
+            inventario.vaciar_inventario()
+        case "8":
+            print("Saliendo del programa...")
+            break
+        case _:
+            print("Error: ingrese una de las opciones")
